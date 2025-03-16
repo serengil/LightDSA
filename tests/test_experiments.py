@@ -2,12 +2,12 @@
 import time
 
 # 3rd party dependencies
-import pandas as pd
 from tqdm import tqdm
 from lightdsa import LightDSA
 from lightecc.curves.inventory import list_curves
 
-if __name__ == "__main__":
+
+def __test_experiments():
     m = "Hello, World!"
 
     configs = []
@@ -44,17 +44,16 @@ if __name__ == "__main__":
             (algorithm, form, curve, n, hash_algorithm, key_gen, sign_time, verify_time)
         )
 
-    df = pd.DataFrame(
-        results,
-        columns=[
-            "algorithm",
-            "form",
-            "curve",
-            "n",
-            "hash_algorithm",
-            "key_gen",
-            "sign_time",
-            "verify_time",
-        ],
-    )
-    df.to_csv("performance.csv", index=False)
+    for (
+        algorithm,
+        form,
+        curve,
+        n,
+        hash_algorithm,
+        key_gen,
+        sign_time,
+        verify_time,
+    ) in results:
+        print(
+            f"{algorithm} | {form} | {curve} | {n} | {hash_algorithm} | {key_gen:.4f} | {sign_time:.4f} | {verify_time:.4f}"
+        )
