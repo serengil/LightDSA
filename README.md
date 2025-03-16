@@ -18,6 +18,8 @@
 
 </div>
 
+<p align="center"><img src="https://raw.githubusercontent.com/serengil/LightDSA/master/images/shield.png" width="200" height="240"></p>
+
 LightDSA is a lightweight digital signature algorithm library for Python. It is a hybrid library supporting [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://sefiks.com/2018/02/16/elegant-signatures-with-elliptic-curve-cryptography/) and [Edwards-Curve Digital Signature Algorithm (EdDSA)](https://sefiks.com/2018/12/24/a-gentle-introduction-to-edwards-curve-digital-signature-algorithm-eddsa/) and [RSA](https://sefiks.com/2023/03/06/a-step-by-step-partially-homomorphic-encryption-example-with-rsa-in-python/).
 
 # Installation [![PyPI](https://img.shields.io/pypi/v/lightdsa.svg)](https://pypi.org/project/lightdsa/)
