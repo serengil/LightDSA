@@ -41,7 +41,7 @@ def __test_experiments():
         verify_time = toc - tic
 
         results.append(
-            (algorithm, form, curve, n, hash_algorithm, key_gen, sign_time, verify_time)
+            (algorithm, form, curve, n.bit_length(), hash_algorithm, key_gen, sign_time, verify_time)
         )
 
     for (
