@@ -1,1 +1,2 @@
 lightecc
+sympy
