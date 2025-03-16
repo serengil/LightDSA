@@ -6,7 +6,6 @@
 [![Stars](https://img.shields.io/github/stars/serengil/LightDSA?color=yellow&style=flat&label=%E2%AD%90%20stars)](https://github.com/serengil/LightDSA/stargazers)
 [![Tests](https://github.com/serengil/LightDSA/actions/workflows/tests.yml/badge.svg)](https://github.com/serengil/LightDSA/actions/workflows/tests.yml)
 [![License](http://img.shields.io/:license-MIT-green.svg?style=flat)](https://github.com/serengil/LightPHE/blob/master/LICENSE)
-[![arXiv](https://img.shields.io/badge/arXiv-2408.05219-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2408.05219)
 
 [![Blog](https://img.shields.io/:blog-sefiks.com-blue.svg?style=flat&logo=wordpress)](https://sefiks.com)
 [![YouTube](https://img.shields.io/:youtube-@sefiks-red.svg?style=flat&logo=youtube)](https://www.youtube.com/@sefiks?sub_confirmation=1)
