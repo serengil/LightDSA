@@ -7,6 +7,7 @@ from lightdsa.interfaces.signatures import Signature
 from lightdsa.algorithms.eddsa import EdDSA
 from lightdsa.algorithms.ecdsa import ECDSA
 from lightdsa.algorithms.rsa import RSA
+from lightdsa.algorithms.dsa import DSA
 from lightdsa.commons.transformation import integerize
 from lightdsa.commons.logger import Logger
 
@@ -72,6 +73,11 @@ class LightDSA:
             )
         elif algorithm_name.lower() == "rsa":
             self.dsa = RSA(
+                key_size=key_size,
+                keys=keys,
+            )
+        elif algorithm_name.lower() == "dsa":
+            self.dsa = DSA(
                 key_size=key_size,
                 keys=keys,
             )

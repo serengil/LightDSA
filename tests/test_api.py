@@ -7,7 +7,7 @@ from lightdsa.commons.logger import Logger
 
 logger = Logger(module="tests/test_api.py")
 
-ALGORITHMS = ["EdDSA", "ECDSA", "RSA"]
+ALGORITHMS = ["EdDSA", "ECDSA", "RSA", "DSA"]
 
 
 @pytest.mark.parametrize(
