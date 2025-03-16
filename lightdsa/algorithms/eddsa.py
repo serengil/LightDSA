@@ -27,8 +27,8 @@ class EdDSA(Signature):
         https://sefiks.com/2018/12/24/a-gentle-introduction-to-edwards-curve-digital-signature-algorithm-eddsa/
         """
         self.key_size = key_size
-        self.form_name = form_name
-        self.curve_name = curve_name
+        self.form_name = form_name or "edwards"
+        self.curve_name = curve_name or "ed25519"
         self.curve = LightECC(form_name, curve_name)
         self.keys = keys or self.generate_keys(key_size or self.curve.n.bit_length())
         self.hash_algorithm = transformation.get_hash_algorithm(self.curve.n)
@@ -71,7 +71,10 @@ class EdDSA(Signature):
         Returns:
             signature (Tuple[Tuple[int, int], int]): signature of the message
         """
-        r = transformation.hashify(message, algorithm=self.hash_algorithm) % self.curve.modulo
+        r = (
+            transformation.hashify(message, algorithm=self.hash_algorithm)
+            % self.curve.modulo
+        )
         R = r * self.curve.G
         h = (R.x + self.keys["public_key"]["Qa"][0] + message) % self.curve.modulo
         s = r + h * self.keys["private_key"]["ka"]

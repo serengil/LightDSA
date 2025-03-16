@@ -13,6 +13,7 @@ from lightdsa.commons.logger import Logger
 
 logger = Logger(module="lightdsa/algorithms/ecdsa.py")
 
+
 class ECDSA(Signature):
     def __init__(
         self,
@@ -27,8 +28,8 @@ class ECDSA(Signature):
         https://sefiks.com/2018/02/16/elegant-signatures-with-elliptic-curve-cryptography/
         """
         self.key_size = key_size
-        self.form_name = form_name
-        self.curve_name = curve_name
+        self.form_name = form_name or "weierstrass"
+        self.curve_name = curve_name or "secp256k1"
         self.curve = LightECC(form_name, curve_name)
         self.keys = keys or self.generate_keys(key_size or self.curve.n.bit_length())
         self.hash_algorithm = hash_algorithm
@@ -83,7 +84,11 @@ class ECDSA(Signature):
         private_key = self.keys["private_key"]["ka"]
 
         r = R.x % self.curve.n
-        s = (hashed_message + r * private_key) * pow(random_key, -1, self.curve.n) % self.curve.n
+        s = (
+            (hashed_message + r * private_key)
+            * pow(random_key, -1, self.curve.n)
+            % self.curve.n
+        )
 
         return (r, s)
 
@@ -104,8 +109,8 @@ class ECDSA(Signature):
         r, s = signature
         w = pow(s, -1, self.curve.n)
 
-        u1 = ( ( hashed_message * w ) % self.curve.n ) * self.curve.G
-        u2 = ( ( r * w ) % self.curve.n ) * public_key
+        u1 = ((hashed_message * w) % self.curve.n) * self.curve.G
+        u2 = ((r * w) % self.curve.n) * public_key
 
         checkpoint = u1 + u2
 
