@@ -8,7 +8,7 @@ with open("requirements.txt", "r", encoding="utf-8") as f:
 
 setuptools.setup(
     name="lightdsa",
-    version="0.0.1",
+    version="0.0.2",
     author="Sefik Ilkin Serengil",
     author_email="serengil@gmail.com",
     description="A Lightweight Digital Signature Algorithm Library for Python",

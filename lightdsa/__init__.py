@@ -11,7 +11,7 @@ from lightdsa.algorithms.dsa import DSA
 from lightdsa.commons.transformation import integerize
 from lightdsa.commons.logger import Logger
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 
 logger = Logger(module="lightdsa/__init__.py")
