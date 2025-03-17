@@ -49,7 +49,7 @@ dsa.export_keys("public.txt", public = True)
 del dsa
 ```
 
-If you wish to use a pre-existing exported cryptosystem, you should specify the exported key file during initialization. This will allow you to sign messages using the private key and verify messages using the public key.
+If you wish to use a pre-existing exported cryptosystem, you should specify the exported key file during initialization. This will allow you to sign messages using the private key as
 
 ```python
 # restore the cryptosystem for signer side
@@ -57,7 +57,11 @@ signer_dsa = LightDSA(algorithm_name = "eddsa", key_file = "secret.txt")
 
 message = "Hello, world!"
 signature = signer_dsa.sign(message)
+```
 
+And verify messages using the public key as
+
+```python
 # restore the cryptosystem for the verifier side
 verifier_dsa = LightDSA(algorithm_name = "eddsa", key_file = "public.txt")
 verifier_dsa.verify(message, signature)
