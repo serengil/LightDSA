@@ -61,10 +61,10 @@ def get_hash_algorithm(n: int) -> str:
     """
     hash_algorithms = {
         range(0, 160): "sha1",
-        range(160, 224): "sha224",
-        range(224, 256): "sha256",
-        range(256, 384): "sha384",
-        range(384, 100000): "sha512",
+        range(160, 225): "sha224",
+        range(225, 257): "sha256",
+        range(257, 385): "sha384",
+        range(385, 100000): "sha512",
     }
     hash_algorithm = "sha256"
     for bit_range, algorithm in hash_algorithms.items():
