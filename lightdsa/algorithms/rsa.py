@@ -30,9 +30,9 @@ class RSA(Signature):
         self.key_size = key_size
         self.keys = keys or self.generate_keys(key_size or DEFAULT_KEY_SIZE)
 
-        if key_size is None or key_size < 3072:
+        if key_size is None or key_size <= 3072:
             self.hash_algorithm = "sha256"
-        elif key_size < 4096:
+        elif key_size <= 7680:
             self.hash_algorithm = "sha384"
         else:
             self.hash_algorithm = "sha512"
