@@ -114,3 +114,5 @@ Please cite LightDSA in your publications if it helps your research. Here is its
 # License
 
 LightDSA is licensed under the MIT License - see [`LICENSE`](https://github.com/serengil/LightDSA/blob/master/LICENSE) for more details.
+
+LightDSA [logo](https://thenounproject.com/icon/captain-america-shield-2579667/) is created by [M. Ristiyanto](https://thenounproject.com/creator/masmajnun.studio/) and it is licensed under [Creative Commons: By Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/).
