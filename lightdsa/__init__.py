@@ -1,6 +1,7 @@
 # built-in dependencies
 from typing import Optional, Tuple, Union, BinaryIO, cast
 import json
+import sys
 
 # project dependencies
 from lightdsa.interfaces.signatures import Signature
@@ -11,17 +12,23 @@ from lightdsa.algorithms.dsa import DSA
 from lightdsa.commons.transformation import integerize
 from lightdsa.commons.logger import Logger
 
-__version__ = "0.0.2"
+VERSION = "0.0.3"
 
 
 logger = Logger(module="lightdsa/__init__.py")
 
+# Not to get ValueError: Exceeds the limit (4300) for integer string conversion
+if hasattr(sys, "set_int_max_str_digits"):
+    sys.set_int_max_str_digits(0)
 
-# pylint: disable=eval-used
+
+# pylint: disable=eval-used, unknown-option-value, too-many-positional-arguments
 class LightDSA:
     """
     Build a LightDSA object
     """
+
+    __version__ = VERSION
 
     def __init__(
         self,

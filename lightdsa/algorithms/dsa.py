@@ -12,7 +12,7 @@ from lightdsa.commons.logger import Logger
 
 logger = Logger(module="lightdsa/algorithms/dsa.py")
 
-DEFAULT_KEY_SIZE = 30
+DEFAULT_KEY_SIZE = 2048
 
 
 class DSA(Signature):
@@ -28,18 +28,18 @@ class DSA(Signature):
         self.key_size = key_size
         self.keys = keys or self.generate_keys(key_size or DEFAULT_KEY_SIZE)
 
-        if key_size is None or key_size < 3072:
+        if key_size is None:
             self.hash_algorithm = "sha256"
-        elif key_size < 4096:
+        elif key_size <= 1024:
+            self.hash_algorithm = "sha1"
+        elif key_size <= 2048:
+            self.hash_algorithm = "sha224"
+        elif key_size <= 3072:
+            self.hash_algorithm = "sha256"
+        elif key_size <= 7680:
             self.hash_algorithm = "sha384"
         else:
             self.hash_algorithm = "sha512"
-
-        logger.warn(
-            "DSA in LightDSA is experimental purposes and not recommended for production use."
-            "Because its key generation time is too long for required key sizes."
-            "That is why, we generated a DSA cryptosystem with small key size."
-        )
 
     def generate_keys(self, key_size: int) -> dict:
         """
@@ -53,16 +53,18 @@ class DSA(Signature):
         keys["private_key"] = {}
         keys["public_key"] = {}
 
-        q = sympy.randprime(2 ** (key_size // 2 - 1), 2 ** (key_size // 2))
-        # Generate p such that (p - 1) % q == 0
+        q_bits = find_bit_sizes(key_size=key_size)
+        a_bits = key_size - q_bits
+
         while True:
-            p = sympy.randprime(2 ** (key_size - 1), 2**key_size)
-            if (p - 1) % q == 0:
+            a = random.randrange(2 ** (a_bits - 1), 2 ** (a_bits))
+            q = sympy.randprime(2 ** (q_bits - 1), 2**q_bits)
+            p = (a * q) + 1
+            if sympy.isprime(p):
                 break
 
         logger.debug(f"{p=}, {q=} just generated")
-
-        a = int((p - 1) // q)
+        logger.debug(f"p is {p.bit_length()} bits long whereas key size is {key_size}")
 
         while True:
             h = random.randint(2, p - 2)
@@ -144,3 +146,22 @@ class DSA(Signature):
             raise ValueError("Invalid signature")
 
         return True
+
+
+def find_bit_sizes(key_size: int) -> int:
+    """
+    Find bit sizes of q and from given bit size of p
+    """
+    # pylint: disable=no-else-return
+    if key_size == 1024:
+        return 160
+    elif key_size == 2048:
+        return 224
+    elif key_size == 3072:
+        return 256
+    elif key_size == 7680:
+        return 320
+    elif key_size == 15360:
+        return 384
+    else:
+        raise ValueError(f"Invalid key size - {key_size}")
