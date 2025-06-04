@@ -102,12 +102,12 @@ Also, your company's logo will be shown on README on GitHub if you become sponso
 Please cite LightDSA in your publications if it helps your research. Here is its BibTex entry:
 
 ```BibTeX
-@misc{serengil2025lightdsa
-    author       = {Serengil, Sefik Ilkin},
-    title        = {LightDSA: A Lightweight Digital Signature Algorithm Library for Python},
-    year         = {2025},
-    publisher    = {GitHub},
-    howpublished = {https://github.com/serengil/LightDSA},
+@article{serengil2025lightdsa,
+  title={LightDSA: A Python-Based Hybrid Digital Signature Library and Performance Analysis of RSA, DSA, ECDSA and EdDSA in Variable Configurations, Elliptic Curve Forms and Curves},
+  author={Serengil, Sefik and Ozpinar, Alper},
+  journal={arXiv preprint arXiv:2505.23773},
+  note={doi: 10.48550/arXiv.2505.23773. [Online]. Available: \url{https://arxiv.org/abs/2505.23773}},
+  year={2025}
 }
 ```
 
