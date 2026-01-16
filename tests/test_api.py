@@ -99,7 +99,7 @@ def test_custom_curves():
         ("ecdsa", "weierstrass", "bn638"),
     ]
     for algorithm, form, curve in configs:
-        dsa = LightDSA(algorithm_name="rsa")
+        dsa = LightDSA(algorithm_name=algorithm, form_name=form, curve_name=curve)
         m = 23
         signature = dsa.sign(m)
         assert dsa.verify(m, signature) is True
